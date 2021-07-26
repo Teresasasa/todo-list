@@ -7,12 +7,19 @@ export default function Todos() {
     const [name, setName] = useState('');
     const userName = 'Jing';
 
+    const newTodo = (name) => {
+        return {
+            id: Date.now(),
+            name,
+        };
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch({
             type: ACTIONS.ADD_TODO,
             payload: {
-                todo: name,
+                todo: newTodo(name),
             },
         });
         setName('');
@@ -32,7 +39,7 @@ export default function Todos() {
             </section>
             <section>
                 {todos.map((todo) => (
-                    <Todo todo={todo} dispatch={dispatch}/>
+                    <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
                 ))}
             </section>
         </div>

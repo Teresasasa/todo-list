@@ -3,7 +3,7 @@ export default function reducer(todos, action) {
         case ACTIONS.ADD_TODO:
             return [...todos, action.payload.todo];
         case ACTIONS.DELETE_TODO:
-            return todos.filter((todo) => todo !== action.payload);
+            return todos.filter((todo) => todo.id !== action.payload.id);
         default:
             return todos;
     }
