@@ -10,4 +10,11 @@ describe('Todos', () => {
             /TODO LIST/
         );
     });
+
+    test('renders h2', () => {
+        render(<Todos userName/>);
+        expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+            /Hi Jing, what’s your focus for today?/
+        );
+    });
 });
