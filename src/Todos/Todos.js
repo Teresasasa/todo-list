@@ -1,5 +1,6 @@
 import React, {useReducer, useState} from 'react';
 import reducer, {ACTIONS} from "./reducer";
+import Todo from "./Todo";
 
 export default function Todos() {
     const [todos, dispatch] = useReducer(reducer, []);
@@ -28,6 +29,11 @@ export default function Todos() {
                     <input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
                     <button type='submit'>Add Task</button>
                 </form>
+            </section>
+            <section>
+                {todos.map((todo) => (
+                    <Todo todo={todo} dispatch={dispatch}/>
+                ))}
             </section>
         </div>
     )
