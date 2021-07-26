@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useReducer, useState} from 'react';
+import reducer, {ACTIONS} from "./reducer";
 
 export default function Todos() {
+    const [todos, dispatch] = useReducer(reducer, []);
+    const [name, setName] = useState('');
     const userName = 'Jing';
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch({
+            type: ACTIONS.ADD_TODO,
+            payload: {
+                todo: name,
+            },
+        });
+        setName('');
     };
 
     return (
@@ -15,7 +25,7 @@ export default function Todos() {
             </section>
             <section>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder='Input whatever you like...'/>
+                    <input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
                     <button type='submit'>Add Task</button>
                 </form>
             </section>
