@@ -11,10 +11,24 @@ input {
 button {
     background: red;
     color: white;
-    height: 70px;
+    height: 72px;
     width: 200px;
     font-size: 30px;
     margin-top: 20px;
     margin-bottom: 20px;
     border: none;
+}
+
+.todo-list {
+    margin-left: 430px;
+    text-align: left;
+}
+
+.todo-list button {
+    background: #ffbf00;
+    color: #02025c;
+    height: 50px;
+    width: 150px;
+    border-radius: 8px;
+    margin-right: 430px;
 }

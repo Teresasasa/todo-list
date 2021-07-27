@@ -38,7 +38,7 @@ export default function Todos() {
                     <button type='submit'>Add Task</button>
                 </form>
             </section>
-            <section>
+            <section className='todo-list'>
                 {todos.map((todo) => (
                     <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
                 ))}
