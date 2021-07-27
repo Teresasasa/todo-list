@@ -1,11 +1,12 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import reducer, {ACTIONS} from "./reducer";
 import Todo from "./Todo";
-import './Todos.css';
+import {Header, Input, SubmitButton, TodoLists, Wrapper} from "./style";
 
 export default function Todos() {
     const [todos, dispatch] = useReducer(reducer, JSON.parse(window.localStorage.getItem('todos')));
     const [name, setName] = useState('');
+
     const userName = 'Jing';
 
     const newTodo = (name) => {
@@ -33,21 +34,21 @@ export default function Todos() {
 
     return (
         <div>
-            <section>
+            <Header>
               <h1>TODO LIST</h1>
               <h2>Hi {userName}, what’s your focus for today?</h2>
-            </section>
-            <section className='todo-input'>
+            </Header>
+            <section>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
-                    <button type='submit'>Add Task</button>
+                    <Input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
+                    <SubmitButton type='submit'>Add Task</SubmitButton>
                 </form>
             </section>
-            <section className='todo-list'>
+            <TodoLists>
                 {getTodoList().map((todo) => (
                     <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
                 ))}
-            </section>
+            </TodoLists>
         </div>
     )
 }
