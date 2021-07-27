@@ -1,10 +1,10 @@
-import React, {useReducer, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import reducer, {ACTIONS} from "./reducer";
 import Todo from "./Todo";
 import './Todos.css';
 
 export default function Todos() {
-    const [todos, dispatch] = useReducer(reducer, []);
+    const [todos, dispatch] = useReducer(reducer, JSON.parse(window.localStorage.getItem('todos')));
     const [name, setName] = useState('');
     const userName = 'Jing';
 
@@ -26,6 +26,11 @@ export default function Todos() {
         setName('');
     };
 
+    const getTodoList = () => {
+        window.localStorage.setItem('todos', JSON.stringify(todos));
+        return JSON.parse(window.localStorage.getItem('todos'))
+    }
+
     return (
         <div>
             <section>
@@ -39,7 +44,7 @@ export default function Todos() {
                 </form>
             </section>
             <section className='todo-list'>
-                {todos.map((todo) => (
+                {getTodoList().map((todo) => (
                     <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
                 ))}
             </section>
