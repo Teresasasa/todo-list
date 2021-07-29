@@ -1,7 +1,7 @@
 import React, {useReducer, useState} from 'react';
 import reducer, {ACTIONS} from "./reducer";
 import Todo from "./Todo";
-import {Header, Input, SubmitButton, TodoLists} from "./style";
+import {Footer, Header, Input, SubmitButton, TodoLists} from "./style";
 import {useMediaQuery} from "react-responsive";
 import {MIN_TABLET_WIDTH} from "./utils";
 
@@ -55,6 +55,9 @@ export default function Todos() {
                     <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
                 ))}
             </TodoLists>
+            <Footer>
+                Learn more about me
+            </Footer>
         </div>
     )
 }

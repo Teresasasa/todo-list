@@ -59,6 +59,7 @@ export const TodoLists = styled.div`
     margin-top: 20px;
     text-align: left;
     color: white;
+    margin-bottom: 200px;
 `;
 
 export const Todos = styled.span`
@@ -92,6 +93,13 @@ export const DeleteButton = styled.button`
     border-radius:50%;
     margin-right: 10%;
     }
+`;
+
+export const Footer = styled.footer`
+    color: white;
+    font-size: 24px;
+    font-style: italic;
+    text-decoration:underline;
 `;
 
 
