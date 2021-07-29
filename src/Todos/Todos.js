@@ -1,10 +1,15 @@
 import React, {useReducer, useState} from 'react';
 import reducer, {ACTIONS} from "./reducer";
 import Todo from "./Todo";
-import {Header, Input, SubmitButton, TodoLists, Wrapper} from "./style";
+import {Header, Input, SubmitButton, TodoLists} from "./style";
+import {useMediaQuery} from "react-responsive";
+
+
+
 
 export default function Todos() {
-    const [todos, dispatch] = useReducer(reducer, JSON.parse(window.localStorage.getItem('todos')));
+    const initialTodos = JSON.parse(window.localStorage.getItem('todos')) ? JSON.parse(window.localStorage.getItem('todos')) : []
+    const [todos, dispatch] = useReducer(reducer, initialTodos);
     const [name, setName] = useState('');
 
     const userName = 'Jing';
@@ -32,6 +37,15 @@ export default function Todos() {
         return JSON.parse(window.localStorage.getItem('todos'))
     }
 
+    const Tablet = () => {
+        const isTablet = useMediaQuery({ minWidth: 768 })
+        return isTablet ? 'Add Task' : null
+    }
+    const Mobile = () => {
+        const isMobile = useMediaQuery({ maxWidth: 767 })
+        return isMobile ? '+' : null
+    }
+
     return (
         <div>
             <Header>
@@ -41,7 +55,10 @@ export default function Todos() {
             <section>
                 <form onSubmit={handleSubmit}>
                     <Input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
-                    <SubmitButton type='submit'>Add Task</SubmitButton>
+                    <SubmitButton type='submit'>
+                        <Tablet />
+                        <Mobile />
+                    </SubmitButton>
                 </form>
             </section>
             <TodoLists>
