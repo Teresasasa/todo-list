@@ -3,10 +3,7 @@ import reducer, {ACTIONS} from "./reducer";
 import Todo from "./Todo";
 import {Header, Input, SubmitButton, TodoLists} from "./style";
 import {useMediaQuery} from "react-responsive";
-import {MAX_MOBILE_WIDTH, MIN_TABLET_WIDTH} from "./utils";
-
-
-
+import {MIN_TABLET_WIDTH} from "./utils";
 
 export default function Todos() {
     const initialTodos = JSON.parse(window.localStorage.getItem('todos')) ? JSON.parse(window.localStorage.getItem('todos')) : []
@@ -31,20 +28,12 @@ export default function Todos() {
             },
         });
         setName('');
+        window.localStorage.setItem('todos', JSON.stringify([...todos, newTodo(name)]));
     };
 
-    const getTodoList = () => {
-        window.localStorage.setItem('todos', JSON.stringify(todos));
-        return JSON.parse(window.localStorage.getItem('todos'))
-    }
-
-    const Tablet = () => {
+    const IsTablet = () => {
         const isTablet = useMediaQuery({ minWidth: MIN_TABLET_WIDTH })
-        return isTablet ? 'Add Task' : null
-    }
-    const Mobile = () => {
-        const isMobile = useMediaQuery({ maxWidth: MAX_MOBILE_WIDTH })
-        return isMobile ? '+' : null
+        return isTablet ? 'Add Task' : '+'
     }
 
     return (
@@ -57,13 +46,12 @@ export default function Todos() {
                 <form onSubmit={handleSubmit}>
                     <Input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
                     <SubmitButton type='submit'>
-                        <Tablet />
-                        <Mobile />
+                        <IsTablet />
                     </SubmitButton>
                 </form>
             </section>
             <TodoLists>
-                {getTodoList().map((todo) => (
+                {todos.map((todo) => (
                     <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
                 ))}
             </TodoLists>
