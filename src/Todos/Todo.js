@@ -1,6 +1,6 @@
 import React from 'react';
 import {ACTIONS} from "./reducer";
-import {DeleteButton} from "./style";
+import {DeleteButton, Todos} from "./style";
 import {useMediaQuery} from "react-responsive";
 import {MAX_MOBILE_WIDTH, MIN_TABLET_WIDTH} from "./utils";
 
@@ -17,11 +17,13 @@ export default function Todo({ todo, dispatch }) {
 
     return (
         <div>
-            <span>{todo.name}</span>
+            <Todos>{todo.name}</Todos>
+            <span>
             <DeleteButton onClick={() => dispatch({ type: ACTIONS.DELETE_TODO, payload: todo })}>
                 <Tablet />
                 <Mobile />
             </DeleteButton>
+                </span>
         </div>
     );
 }

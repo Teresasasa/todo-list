@@ -55,39 +55,42 @@ export const SubmitButton = styled.button`
     }
 `;
 
+export const TodoLists = styled.div`
+    margin-top: 20px;
+    text-align: left;
+    color: white;
+`;
+
+export const Todos = styled.span`
+    @media only screen and (min-width: ${MIN_TABLET_WIDTH}px) {
+    font-size: 30px;
+    padding: 15%;
+    }
+    
+    @media only screen and (max-width: ${MAX_MOBILE_WIDTH}px) {
+    margin-left: 10%;
+    font-size: 24px;
+    }
+`;
+
 export const DeleteButton = styled.button`
     background: #ffbf00;
     color: #02025c;
-    
+    float: right;
+
     @media only screen and (min-width: ${MIN_TABLET_WIDTH}px) {
-    height: 50px;
+    height: 36px;
     width: 150px;
     border-radius: 8px;
-    margin-right: 430px;
-    font-size: 28px;
-    // float: right;
+    margin-right: 15%;
+    font-size: 26px;
     }
     
     @media only screen and (max-width: ${MAX_MOBILE_WIDTH}px) {
     width: 28px;
     height: 28px;
-    border-radius:50%
-    }
-`;
-
-export const TodoLists = styled.section`
-    margin-top: 20px;
-    text-align: left;
-    color: white;
-    
-    @media only screen and (min-width: ${MIN_TABLET_WIDTH}px) {
-    margin-left: 430px;
-    font-size: 30px;
-    }
-    
-    @media only screen and (max-width: ${MAX_MOBILE_WIDTH}px) {
-    margin-left: 80px;
-    font-size: 24px;
+    border-radius:50%;
+    margin-right: 10%;
     }
 `;
 
