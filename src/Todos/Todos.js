@@ -3,6 +3,7 @@ import reducer, {ACTIONS} from "./reducer";
 import Todo from "./Todo";
 import {Header, Input, SubmitButton, TodoLists} from "./style";
 import {useMediaQuery} from "react-responsive";
+import {MAX_MOBILE_WIDTH, MIN_TABLET_WIDTH} from "./utils";
 
 
 
@@ -38,11 +39,11 @@ export default function Todos() {
     }
 
     const Tablet = () => {
-        const isTablet = useMediaQuery({ minWidth: 768 })
+        const isTablet = useMediaQuery({ minWidth: MIN_TABLET_WIDTH })
         return isTablet ? 'Add Task' : null
     }
     const Mobile = () => {
-        const isMobile = useMediaQuery({ maxWidth: 767 })
+        const isMobile = useMediaQuery({ maxWidth: MAX_MOBILE_WIDTH })
         return isMobile ? '+' : null
     }
 
