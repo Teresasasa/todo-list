@@ -5,10 +5,6 @@ import {Footer, Header, Input, SubmitButton, TodoLists} from "./style";
 import {useMediaQuery} from "react-responsive";
 import {MIN_TABLET_WIDTH} from "./utils";
 
-export const IsTabletInPut = ( {isTablet} ) => {
-        return isTablet ? 'Add Task' : '+'
-}
-
 export default function Todos() {
     const initialTodos = JSON.parse(window.localStorage.getItem('todos')) ? JSON.parse(window.localStorage.getItem('todos')) : []
     const [todos, dispatch] = useReducer(reducer, initialTodos);
@@ -36,6 +32,10 @@ export default function Todos() {
         window.localStorage.setItem('todos', JSON.stringify([...todos, newTodo(name)]));
     };
 
+    const IsTablet = ( {isTablet} ) => {
+        return isTablet ? 'Add Task' : '+'
+    }
+
     const deleteTodo = (todoItem) => {
         window.localStorage.setItem('todos', JSON.stringify(todos.filter((todo) => todo.id !== todoItem.id)));
     }
@@ -50,7 +50,7 @@ export default function Todos() {
                 <form onSubmit={handleSubmit}>
                     <Input type="text" placeholder='Input whatever you like...' value={name} onChange={(event) => setName(event.target.value)}/>
                     <SubmitButton type='submit'>
-                        <IsTabletInPut isTablet={isTablet}/>
+                        <IsTablet isTablet={isTablet}/>
                     </SubmitButton>
                 </form>
             </section>
