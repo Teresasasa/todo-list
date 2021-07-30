@@ -8,6 +8,11 @@ import userEvent from "@testing-library/user-event";
 jest.mock('react-responsive')
 describe('Todos', () => {
     responsive.useMediaQuery.mockImplementation(() => false);
+
+    beforeEach(() => {
+        window.localStorage.clear();
+    });
+
     test('renders h1', () => {
         render(<Todos />);
         expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
@@ -36,8 +41,11 @@ describe('Todos', () => {
 
     test('should delete one todo when click delete button', () => {
         render(<Todos />);
+        userEvent.type(screen.getByRole('textbox'), 'second todo{enter}');
+        expect(screen.getByText(/second todo/)).toBeInTheDocument();
+
         userEvent.click(screen.getByRole('button', { name: '-' }));
-        expect(screen.queryByText(/first todo/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/second todo/)).not.toBeInTheDocument();
     });
 
     test('should renders footer', () => {
